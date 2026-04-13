@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerald - Frontend Developer</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="shortcut icon" href="favicon.svg">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div id="cursor-dot">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4 L22 11 L14 14 L11 22 Z" fill="#DC143C" stroke="#ffffff" stroke-width="2.5" stroke-linejoin="round"/>
+        </svg>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="logo">Gerald</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="nav-right">
+            <a href="#contact" class="hire-btn" id="hireBtn">
+                <span class="hire-circle"></span>
+                Hire Me
+            </a>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Persistent 3D object — fixed layer, spans all sections -->
+    <div class="spline-container">
+        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js"></script>
+        <spline-viewer url="https://prod.spline.design/iEjnsDRqXnQW59o4/scene.splinecode"></spline-viewer>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero" id="home">
+        <div class="hero-left">
+            <div class="availability">
+                <span class="pulsing-dot"></span>
+                <span class="availability-text">Available for hire</span>
+            </div>
+            <h1 class="dev-name">HEY, I'M <span class="name-highlight">GERALD</span></h1>
+            <div class="role-container">
+                <span class="role-title" id="typewriter"></span><span class="blinking-cursor">|</span>
+            </div>
+            <p class="bio">
+                I craft fast, beautiful, and accessible web experiences that users love.
+            </p>
+            <div class="cta-group">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="Chinedu_CV.docx" download="Chinedu_CV.docx" class="btn btn-secondary">Download CV</a>
+            </div>
+            <div class="social-links">
+                <a href="https://github.com/Geraldsaviour" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="mailto:mgbafuluchinedu@gmail.com" aria-label="Gmail"><i class="fas fa-envelope"></i></a>
+                <a href="https://wa.me/2349039269846" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-spline-overlay"></div>
+        <div class="about-right">
+            <span class="about-label">About Me</span>
+            <h2 class="about-heading">CRAFTING <span class="about-highlight">DIGITAL</span><br>EXPERIENCES</h2>
+            <p class="about-bio">
+                I'm a frontend developer with a passion for building immersive, performant web experiences.
+                I bridge the gap between design and engineering — turning ideas into pixel-perfect,
+                interactive products that feel alive.
+            </p>
+            <div class="about-stats">
+                <div class="stat-card">
+                    <span class="stat-number">3+</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">20+</span>
+                    <span class="stat-label">Projects Shipped</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">Happy Clients</span>
+                </div>
+            </div>
+            <div class="about-skills">
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">TypeScript</span>
+                <span class="skill-tag">HTML</span>
+                <span class="skill-tag">GSAP</span>
+                <span class="skill-tag">Figma</span>
+                <span class="skill-tag">CSS</span>
+            </div>
+            <a href="#contact" class="btn btn-primary about-btn">Let's Work Together</a>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="projects-spline">
+            <spline-viewer url="https://prod.spline.design/J5C7khW36Z7nq6Wv/scene.splinecode"></spline-viewer>
+        </div>
+        <div class="projects-header">
+            <span class="projects-label">My Work</span>
+            <h2 class="projects-heading">FEATURED <span class="projects-highlight">PROJECTS</span></h2>
+        </div>
+
+        <div class="slider-wrapper">
+            <div class="slider-track" id="sliderTrack">
+
+                <!-- Slide 1 — Liquid Glass Calculator -->
+                <div class="project-card">
+                    <div class="card-image">
+                        <div class="card-img-placeholder">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div class="card-overlay"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-tags">
+                            <span class="card-tag">React</span>
+                            <span class="card-tag">Vite</span>
+                            <span class="card-tag">GSAP</span>
+                        </div>
+                        <h3 class="card-title">Liquid Glass Calculator</h3>
+                        <p class="card-desc">Standard & scientific calculator with glassmorphism UI, light/dark theming, and smooth GSAP animations.</p>
+                        <div class="card-links">
+                            <a href="https://liquid-glass-calculator-mcdevv.vercel.app/" target="_blank" rel="noopener" class="card-btn card-btn-primary"><i class="fas fa-external-link-alt"></i> Live</a>
+                            <a href="https://github.com/Geraldsaviour/liquid-glass-calculator" target="_blank" rel="noopener" class="card-btn card-btn-secondary"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 — E-Commerce Product Page -->
+                <div class="project-card">
+                    <div class="card-image">
+                        <div class="card-img-placeholder">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="card-overlay"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-tags">
+                            <span class="card-tag">HTML</span>
+                            <span class="card-tag">CSS</span>
+                            <span class="card-tag">GSAP</span>
+                        </div>
+                        <h3 class="card-title">E-Commerce Product Page</h3>
+                        <p class="card-desc">Product page with GSAP animations, lightbox gallery, interactive cart, and user panel.</p>
+                        <div class="card-links">
+                            <a href="https://ecommerce-product-page-three-mu.vercel.app/" target="_blank" rel="noopener" class="card-btn card-btn-primary"><i class="fas fa-external-link-alt"></i> Live</a>
+                            <a href="https://github.com/Geraldsaviour/ecommerce-product-page" target="_blank" rel="noopener" class="card-btn card-btn-secondary"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 — Fylo Landing Page -->
+                <div class="project-card">
+                    <div class="card-image">
+                        <div class="card-img-placeholder">
+                            <i class="fas fa-folder-open"></i>
+                        </div>
+                        <div class="card-overlay"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-tags">
+                            <span class="card-tag">HTML</span>
+                            <span class="card-tag">CSS</span>
+                        </div>
+                        <h3 class="card-title">Fylo Landing Page</h3>
+                        <p class="card-desc">Clean two-column landing page for a file storage product, built pixel-perfect from a Figma design.</p>
+                        <div class="card-links">
+                            <a href="https://fylo-landing-page-with-two-column-l-tau.vercel.app/" target="_blank" rel="noopener" class="card-btn card-btn-primary"><i class="fas fa-external-link-alt"></i> Live</a>
+                            <a href="https://github.com/Geraldsaviour/fylo-landing-page-with-two-column-layout" target="_blank" rel="noopener" class="card-btn card-btn-secondary"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 4 — Huddle Landing Page (alternating) -->
+                <div class="project-card">
+                    <div class="card-image">
+                        <div class="card-img-placeholder">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="card-overlay"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-tags">
+                            <span class="card-tag">HTML</span>
+                            <span class="card-tag">CSS</span>
+                        </div>
+                        <h3 class="card-title">Huddle — Feature Blocks</h3>
+                        <p class="card-desc">Community landing page with alternating feature blocks, responsive layout, and clean typography.</p>
+                        <div class="card-links">
+                            <a href="https://huddle-solution.vercel.app/" target="_blank" rel="noopener" class="card-btn card-btn-primary"><i class="fas fa-external-link-alt"></i> Live</a>
+                            <a href="https://github.com/Geraldsaviour/huddle-landing-page-solution" target="_blank" rel="noopener" class="card-btn card-btn-secondary"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 5 — Huddle Single Section -->
+                <div class="project-card">
+                    <div class="card-image">
+                        <div class="card-img-placeholder">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <div class="card-overlay"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-tags">
+                            <span class="card-tag">HTML</span>
+                            <span class="card-tag">CSS</span>
+                            <span class="card-tag">JavaScript</span>
+                        </div>
+                        <h3 class="card-title">Huddle — Single Section</h3>
+                        <p class="card-desc">Premium single-section landing page with a custom JS loader animation and polished UI.</p>
+                        <div class="card-links">
+                            <a href="https://huddle-landing-phi-six.vercel.app/" target="_blank" rel="noopener" class="card-btn card-btn-primary"><i class="fas fa-external-link-alt"></i> Live</a>
+                            <a href="https://github.com/Geraldsaviour/huddle-landing-page-single-section" target="_blank" rel="noopener" class="card-btn card-btn-secondary"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 6 — CIEL Web Project -->
+                <div class="project-card">
+                    <div class="card-image">
+                        <div class="card-img-placeholder">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="card-overlay"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-tags">
+                            <span class="card-tag">HTML</span>
+                            <span class="card-tag">CSS</span>
+                            <span class="card-tag">JavaScript</span>
+                        </div>
+                        <h3 class="card-title">CIEL Web Project</h3>
+                        <p class="card-desc">A structured web project built for CIEL, featuring clean layout, responsive design, and semantic HTML.</p>
+                        <div class="card-links">
+                            <a href="https://ciel-sepia.vercel.app/" target="_blank" rel="noopener" class="card-btn card-btn-primary"><i class="fas fa-external-link-alt"></i> Live</a>
+                            <a href="https://github.com/Geraldsaviour/ceil-web-project" target="_blank" rel="noopener" class="card-btn card-btn-secondary"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- end slider-track -->
+        </div><!-- end slider-wrapper -->
+
+        <!-- Slider Controls -->
+        <div class="slider-controls">
+            <button class="slider-btn" id="prevBtn" aria-label="Previous project">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="slider-dots" id="sliderDots"></div>
+            <button class="slider-btn" id="nextBtn" aria-label="Next project">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-inner">
+            <div class="contact-left">
+                <span class="contact-label">Get In Touch</span>
+                <h2 class="contact-heading">LET'S <span class="contact-highlight">WORK</span><br>TOGETHER</h2>
+                <p class="contact-bio">Have a project in mind or just want to say hello? Fill out the form and I'll get back to you within 24 hours.</p>
+                <div class="contact-details">
+                    <div class="contact-detail-item">
+                        <div class="contact-detail-icon"><i class="fas fa-envelope"></i></div>
+                        <a href="mailto:mgbafuluchinedu@gmail.com">mgbafuluchinedu@gmail.com</a>
+                    </div>
+                    <div class="contact-detail-item">
+                        <div class="contact-detail-icon"><i class="fas fa-phone"></i></div>
+                        <a href="tel:+2349039269846">+234 903 926 9846</a>
+                    </div>
+                    <div class="contact-detail-item">
+                        <div class="contact-detail-icon"><i class="fab fa-whatsapp"></i></div>
+                        <a href="https://wa.me/2349039269846" target="_blank" rel="noopener">WhatsApp: +234 903 926 9846</a>
+                    </div>
+                </div>
+                <div class="contact-socials">
+                    <a href="https://github.com/Geraldsaviour" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="mailto:mgbafuluchinedu@gmail.com" aria-label="Gmail"><i class="fas fa-envelope"></i></a>
+                    <a href="https://wa.me/2349039269846" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="contact-right">
+                <form class="contact-form" id="contactForm" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fname">First Name</label>
+                            <input type="text" id="fname" name="fname" placeholder="John" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lname">Last Name</label>
+                            <input type="text" id="lname" name="lname" placeholder="Doe" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" placeholder="Project Inquiry">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary contact-submit">
+                        <span class="submit-text">Send Message</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                    <p class="form-success" id="formSuccess">Message sent! I'll be in touch soon.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-icon"><i class="fas fa-download"></i></div>
+        <div class="toast-text">
+            <span class="toast-title">CV Downloading</span>
+            <span class="toast-sub">Taking you to the contact section...</span>
+        </div>
+        <button class="toast-close" id="toastClose"><i class="fas fa-times"></i></button>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
