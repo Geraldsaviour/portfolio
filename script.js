@@ -108,7 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isMobile) {
             tl.to('.spline-container', { opacity: 1, scale: 1, duration: 2.0, ease: "power2.out" })
         } else {
-            // On mobile skip spline wait, just animate content immediately
             gsap.set('.spline-container', { opacity: 0, display: 'none' });
         }
 
@@ -117,9 +116,14 @@ document.addEventListener('DOMContentLoaded', () => {
           .fromTo('.role-container',{ x: -50, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8 }, "-=0.6")
           .fromTo('.bio',          { x: -50, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8 }, "-=0.6")
           .fromTo('.cta-group',    { x: -50, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8 }, "-=0.6")
-          .fromTo('.social-links', { x: -50, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8 }, "-=0.6")
-          .fromTo('.navbar',       { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 1 },   "-=0.4");
+          .fromTo('.social-links', { x: -50, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8 }, "-=0.6");
     }
+
+    // Navbar animates in immediately — independent of Spline load
+    gsap.fromTo('.navbar',
+        { y: -30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out', delay: 0.3 }
+    );
 
     if (!isMobile) {
         // Load spline module script first, then create viewers after it's ready
