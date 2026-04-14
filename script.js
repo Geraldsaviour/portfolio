@@ -1,6 +1,10 @@
 // Wait for DOM content to load
 document.addEventListener('DOMContentLoaded', () => {
-    
+
+    // --- Device detection (used throughout) ---
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const isTouchDevice = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+
     // --- 1. Navigation & Hamburger Menu ---
     const navbar = document.getElementById('navbar');
     const hamburger = document.querySelector('.hamburger');
@@ -22,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 2. Custom Cursor Parallax & Hover — desktop only ---
     const cursorDot = document.getElementById('cursor-dot');
-    const isTouchDevice = window.matchMedia('(hover: none)').matches;
 
     if (!isTouchDevice && cursorDot) {
         const interactables = document.querySelectorAll('a, .hamburger, .btn, .social-links a');
@@ -92,8 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 4. Initialization — load Spline only on desktop ---
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    const isTouchDevice = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
     let animationsStarted = false;
 
     function initAnimations() {
