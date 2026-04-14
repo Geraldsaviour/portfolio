@@ -1771,3 +1771,95 @@ spline-viewer::part(logo) {
         transform-style: flat !important;
     }
 }
+
+/* ===================== Currently Exploring Card ===================== */
+.currently-card {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.6rem 1.1rem;
+    border-radius: 50px;
+    background: rgba(220, 20, 60, 0.08);
+    border: 1px solid rgba(220, 20, 60, 0.3);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    box-shadow: 0 0 20px rgba(220, 20, 60, 0.1);
+    width: fit-content;
+    font-size: 0.75rem;
+    color: var(--light-grey);
+}
+
+.currently-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--crimson);
+    box-shadow: 0 0 8px var(--crimson);
+    flex-shrink: 0;
+    animation: pulse 1.5s infinite;
+}
+
+.currently-text strong {
+    color: var(--white);
+}
+
+/* ===================== GitHub Profile Button ===================== */
+.github-profile-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.2rem;
+    border-radius: 50px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    color: var(--white);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    width: fit-content;
+}
+
+.github-profile-btn:hover {
+    background: rgba(220, 20, 60, 0.1);
+    border-color: rgba(220, 20, 60, 0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(220, 20, 60, 0.15);
+}
+
+/* ===================== Back to Top ===================== */
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    z-index: 9997;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(220, 20, 60, 0.7), rgba(139, 0, 0, 0.6));
+    border: 1px solid rgba(220, 20, 60, 0.5);
+    color: var(--white);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 16px rgba(220, 20, 60, 0.3);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.back-to-top:hover {
+    box-shadow: 0 8px 24px rgba(220, 20, 60, 0.5);
+    transform: translateY(-3px);
+}

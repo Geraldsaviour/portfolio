@@ -542,4 +542,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     );
 
+    // --- Back to Top ---
+    const backToTop = document.getElementById('backToTop');
+    if (backToTop) {
+        window.addEventListener('scroll', () => {
+            backToTop.classList.toggle('visible', window.scrollY > window.innerHeight * 0.5);
+        });
+        backToTop.addEventListener('click', () => {
+            document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+
 });
