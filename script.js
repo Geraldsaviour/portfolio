@@ -20,32 +20,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 2. Custom Cursor Parallax & Hover ---
+    // --- 2. Custom Cursor Parallax & Hover — desktop only ---
     const cursorDot = document.getElementById('cursor-dot');
-    const interactables = document.querySelectorAll('a, .hamburger, .btn, .social-links a');
-    
-    let mouseX = 0;
-    let mouseY = 0;
+    const isTouchDevice = window.matchMedia('(hover: none)').matches;
 
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        
-        // Update Custom Cursor - Offset by 4px to align the tip (4,4) of the SVG path
-        if (cursorDot) {
-            cursorDot.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`;
-        }
-    });
-
-    // Add Hover States for specific elements
-    interactables.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-            if (cursorDot) cursorDot.classList.add('cursor-hover');
+    if (!isTouchDevice && cursorDot) {
+        const interactables = document.querySelectorAll('a, .hamburger, .btn, .social-links a');
+        document.addEventListener('mousemove', (e) => {
+            cursorDot.style.transform = `translate(${e.clientX - 4}px, ${e.clientY - 4}px)`;
         });
-        item.addEventListener('mouseleave', () => {
-            if (cursorDot) cursorDot.classList.remove('cursor-hover');
+        interactables.forEach(item => {
+            item.addEventListener('mouseenter', () => cursorDot.classList.add('cursor-hover'));
+            item.addEventListener('mouseleave', () => cursorDot.classList.remove('cursor-hover'));
         });
-    });
+    }
 
     // --- 2. Navbar Scroll Effect ---
     window.addEventListener('scroll', () => {
@@ -103,73 +91,74 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(typeEffect, typeSpeed);
     }
 
-    // --- 4. Initialization (Wait for Spline to load) ---
-    const splineViewer = document.querySelector('spline-viewer');
+    // --- 4. Initialization — load Spline only on desktop ---
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const isTouchDevice = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
     let animationsStarted = false;
-    
+
     function initAnimations() {
         if (animationsStarted) return;
         animationsStarted = true;
 
-        // Start typewriter effect after a delay
-        setTimeout(typeEffect, 2000); 
+        setTimeout(typeEffect, 2000);
 
-        // GSAP Loading Animations
         const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-        // 1. Spline Container Scales and fades in first
-        tl.to('.spline-container', {
-            opacity: 1,
-            scale: 1,
-            duration: 2.0,
-            ease: "power2.out"
-        })
-        
-        // 2. Text Content staggers in from left
-        .fromTo('.availability', 
-            { x: -50, opacity: 0 }, 
-            { x: 0, opacity: 1, duration: 0.8 }, 
-            "-=0.5"
-        )
-        .fromTo('.dev-name', 
-            { x: -50, opacity: 0 }, 
-            { x: 0, opacity: 1, duration: 0.8 }, 
-            "-=0.6"
-        )
-        .fromTo('.role-container', 
-            { x: -50, opacity: 0 }, 
-            { x: 0, opacity: 1, duration: 0.8 }, 
-            "-=0.6"
-        )
-        .fromTo('.bio', 
-            { x: -50, opacity: 0 }, 
-            { x: 0, opacity: 1, duration: 0.8 }, 
-            "-=0.6"
-        )
-        .fromTo('.cta-group', 
-            { x: -50, opacity: 0 }, 
-            { x: 0, opacity: 1, duration: 0.8 }, 
-            "-=0.6"
-        )
-        .fromTo('.social-links', 
-            { x: -50, opacity: 0 }, 
-            { x: 0, opacity: 1, duration: 0.8 }, 
-            "-=0.6"
-        )
-        
-        // 3. Navbar fades in from top at the end
-        .fromTo('.navbar',
-            { y: -30, opacity: 0 },
-            { y: 0, opacity: 1, duration: 1 },
-            "-=0.4"
-        );
+        if (!isMobile) {
+            tl.to('.spline-container', { opacity: 1, scale: 1, duration: 2.0, ease: "power2.out" })
+        } else {
+            // On mobile skip spline wait, just animate content immediately
+            gsap.set('.spline-container', { opacity: 0, display: 'none' });
+        }
+
+        tl.fromTo('.availability', { x: -50, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8 }, isMobile ? 0 : "-=0.5")
+          .fromTo('.dev-name',     { x: -50, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8 }, "-=0.6")
+          .fromTo('.role-container',{ x: -50, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8 }, "-=0.6")
+          .fromTo('.bio',          { x: -50, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8 }, "-=0.6")
+          .fromTo('.cta-group',    { x: -50, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8 }, "-=0.6")
+          .fromTo('.social-links', { x: -50, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8 }, "-=0.6")
+          .fromTo('.navbar',       { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 1 },   "-=0.4");
     }
 
-    if (splineViewer) {
-        splineViewer.addEventListener('load', initAnimations);
-        // Fallback just in case load event misses
-        setTimeout(initAnimations, 4000);
+    if (!isMobile) {
+        // Inject spline viewer dynamically — desktop only
+        const splineContainer = document.getElementById('splineContainer');
+        if (splineContainer) {
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.src = 'https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js';
+            document.head.appendChild(script);
+            const viewer = document.createElement('spline-viewer');
+            viewer.setAttribute('url', 'https://prod.spline.design/iEjnsDRqXnQW59o4/scene.splinecode');
+            splineContainer.appendChild(viewer);
+            viewer.addEventListener('load', () => {
+                // Hide the "Built with Spline" watermark
+                if (viewer.shadowRoot) {
+                    const style = document.createElement('style');
+                    style.textContent = '#logo { display: none !important; } [class*="watermark"] { display: none !important; }';
+                    viewer.shadowRoot.appendChild(style);
+                }
+                initAnimations();
+            });
+            setTimeout(initAnimations, 5000);
+        }
+
+        // Inject projects spline
+        const projectsSpline = document.getElementById('projectsSpline');
+        if (projectsSpline) {
+            const viewer2 = document.createElement('spline-viewer');
+            viewer2.setAttribute('url', 'https://prod.spline.design/J5C7khW36Z7nq6Wv/scene.splinecode');
+            projectsSpline.appendChild(viewer2);
+            viewer2.addEventListener('load', () => {
+                if (viewer2.shadowRoot) {
+                    const style = document.createElement('style');
+                    style.textContent = '#logo { display: none !important; } [class*="watermark"] { display: none !important; }';
+                    viewer2.shadowRoot.appendChild(style);
+                }
+            });
+        }
     } else {
+        // Mobile: skip spline entirely, animate immediately
         initAnimations();
     }
 
@@ -220,13 +209,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Hide hero spline when projects section enters
-    ScrollTrigger.create({
-        trigger: '.projects',
-        start: 'top bottom',
-        onEnter: () => gsap.to('.spline-container', { opacity: 0, duration: 0.4, ease: 'power2.out' }),
-        onLeaveBack: () => gsap.to('.spline-container', { opacity: 1, duration: 0.4, ease: 'power2.out' }),
-    });
+    // Hide hero spline when projects section enters — desktop only
+    if (!isTouchDevice) {
+        ScrollTrigger.create({
+            trigger: '.projects',
+            start: 'top bottom',
+            onEnter: () => gsap.to('.spline-container', { opacity: 0, duration: 0.4, ease: 'power2.out' }),
+            onLeaveBack: () => gsap.to('.spline-container', { opacity: 1, duration: 0.4, ease: 'power2.out' }),
+        });
+    }
 
     // Sequence: about fully out → projects spline fades in → then content animates in
     const projectsSection = document.querySelector('.projects');
