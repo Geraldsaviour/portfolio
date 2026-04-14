@@ -122,44 +122,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (!isMobile) {
-        // Inject spline viewer dynamically — desktop only
-        const splineContainer = document.getElementById('splineContainer');
-        if (splineContainer) {
-            const script = document.createElement('script');
-            script.type = 'module';
-            script.src = 'https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js';
-            document.head.appendChild(script);
-            const viewer = document.createElement('spline-viewer');
-            viewer.setAttribute('url', 'https://prod.spline.design/iEjnsDRqXnQW59o4/scene.splinecode');
-            splineContainer.appendChild(viewer);
-            viewer.addEventListener('load', () => {
-                // Hide the "Built with Spline" watermark
-                if (viewer.shadowRoot) {
-                    const style = document.createElement('style');
-                    style.textContent = '#logo { display: none !important; } [class*="watermark"] { display: none !important; }';
-                    viewer.shadowRoot.appendChild(style);
-                }
-                initAnimations();
-            });
-            setTimeout(initAnimations, 5000);
-        }
-
-        // Inject projects spline
-        const projectsSpline = document.getElementById('projectsSpline');
-        if (projectsSpline) {
-            const viewer2 = document.createElement('spline-viewer');
-            viewer2.setAttribute('url', 'https://prod.spline.design/J5C7khW36Z7nq6Wv/scene.splinecode');
-            projectsSpline.appendChild(viewer2);
-            viewer2.addEventListener('load', () => {
-                if (viewer2.shadowRoot) {
-                    const style = document.createElement('style');
-                    style.textContent = '#logo { display: none !important; } [class*="watermark"] { display: none !important; }';
-                    viewer2.shadowRoot.appendChild(style);
-                }
-            });
-        }
+        // Load spline module script first, then create viewers after it's ready
+        const splineScript = document.createElement('script');
+        splineScript.type = 'module';
+        splineScript.src = 'https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js';
+        splineScript.onload = () => {
+            // Hero spline
+            const splineContainer = document.getElementById('splineContainer');
+            if (splineContainer) {
+                const viewer = document.createElement('spline-viewer');
+                viewer.setAttribute('url', 'https://prod.spline.design/iEjnsDRqXnQW59o4/scene.splinecode');
+                splineContainer.appendChild(viewer);
+                viewer.addEventListener('load', () => {
+                    if (viewer.shadowRoot) {
+                        const s = document.createElement('style');
+                        s.textContent = '#logo { display: none !important; } [class*="watermark"] { display: none !important; }';
+                        viewer.shadowRoot.appendChild(s);
+                    }
+                    initAnimations();
+                });
+                setTimeout(initAnimations, 5000);
+            }
+            // Projects spline
+            const projectsSpline = document.getElementById('projectsSpline');
+            if (projectsSpline) {
+                const viewer2 = document.createElement('spline-viewer');
+                viewer2.setAttribute('url', 'https://prod.spline.design/J5C7khW36Z7nq6Wv/scene.splinecode');
+                projectsSpline.appendChild(viewer2);
+                viewer2.addEventListener('load', () => {
+                    if (viewer2.shadowRoot) {
+                        const s = document.createElement('style');
+                        s.textContent = '#logo { display: none !important; } [class*="watermark"] { display: none !important; }';
+                        viewer2.shadowRoot.appendChild(s);
+                    }
+                });
+            }
+        };
+        document.head.appendChild(splineScript);
     } else {
-        // Mobile: skip spline entirely, animate immediately
         initAnimations();
     }
 
