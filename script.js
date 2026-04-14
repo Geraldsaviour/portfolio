@@ -496,9 +496,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitBtn.disabled = true;
                 submitBtn.querySelector('.submit-text').textContent = 'Sending...';
             }
-            // FormSubmit handles the actual POST — no preventDefault
         });
-    }
     }
 
     // Contact scroll animation
