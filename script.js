@@ -485,26 +485,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Contact form ---
+    // --- Contact form — handled by FormSubmit (native POST) ---
     const contactForm = document.getElementById('contactForm');
     const formSuccess = document.getElementById('formSuccess');
 
     if (contactForm) {
-        contactForm.addEventListener('submit', e => {
-            e.preventDefault();
+        contactForm.addEventListener('submit', () => {
             const submitBtn = contactForm.querySelector('.contact-submit');
-            submitBtn.disabled = true;
-            submitBtn.querySelector('.submit-text').textContent = 'Sending...';
-
-            // Simulate send (replace with real endpoint)
-            setTimeout(() => {
-                contactForm.reset();
-                submitBtn.disabled = false;
-                submitBtn.querySelector('.submit-text').textContent = 'Send Message';
-                formSuccess.classList.add('visible');
-                setTimeout(() => formSuccess.classList.remove('visible'), 4000);
-            }, 1200);
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.querySelector('.submit-text').textContent = 'Sending...';
+            }
+            // FormSubmit handles the actual POST — no preventDefault
         });
+    }
     }
 
     // Contact scroll animation
